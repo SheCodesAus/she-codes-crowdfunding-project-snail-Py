@@ -5,18 +5,15 @@ import "./Nav.css"
 
 function Nav() {
     return (
-    <div>
         <header>
-            <img className="header--logo" src="./pointjar-logo-2.png" />
+            <img className="header--logo" src="../pointjar-logo-2.png" />
             <h2 className="header--title">POINT JAR</h2>
-        <nav>
-            <Link to="/">Home</Link>
-            <Link to="/project/:id">Projects</Link>
-            <Link to="/login">Login</Link>
-        </nav>
+            <nav>
+                <Link className="header--nav" to="/">Home</Link>
+                <Link className="header--nav" to="/project/:id">Projects</Link>
+                <Link className="header--nav" to="/login">Login</Link>
+            </nav>
         </header>
-
-    </div>
     )
 }
 
