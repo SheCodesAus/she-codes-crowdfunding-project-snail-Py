@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./ProjectHero.css";
 import { useParams } from "react-router-dom";
 import ProjectOwner from "../ProjectOwner/ProjectOwner";
+import PledgeSupporter from "../PledgeSupporter/PledgeSupporter";
 
 
 function Hero() {
@@ -18,36 +19,32 @@ function Hero() {
          setProjectData(data);
          });
     }, []);
-
-
-
     
     return (
         <section>
             <h1 className="hero--title">{projectData.title}</h1>
+            <p className="hero--tagline">{projectData.tagline}</p>
             <div className="grid--container">
                 <div>
                 <img className="hero--image" src={projectData.image} />
                 </div>
                 <div className="hero--sidebar">
-                    <p>Created on {new Date(projectData.date_created).toLocaleString('en-AU',{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
-                    
-                <p>By: <ProjectOwner owner={projectData.owner} /></p>
+                    <p>Project created on {new Date(projectData.date_created).toLocaleString('en-AU',{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })} by <ProjectOwner owner={projectData.owner} />.</p>
                 <p>{`Status: ${projectData.is_open}`}</p>
-                <button>BREAK YOUR JAR</button>
-                </div>
-            </div>
-            <div className="grid--container">
-            <h2>Pledges:</h2>
-            <ul>
-                {projectData.pledges.map((pledgeData, key) => {
+
+                <p> {projectData.pledges.length} people have just made a donation :</p>
+                <ul>
+                    {projectData.pledges.map((pledgeData, key) => {
                     return (
                         <li>
-                            {pledgeData.amount} from {pledgeData.supporter}
+                            ${pledgeData.amount} from {pledgeData.supporter}
+                            {/* ${pledgeData.amount} from <PledgeSupporter supporter={projectData.supporter} /> */}
                         </li>
                     )
-                })}
-            </ul>
+                    })}
+                    </ul>
+                    <button>BREAK YOUR JAR</button>
+                </div>
             </div>
         </section>
     )

@@ -4,6 +4,7 @@ import Nav from "./components/Nav/Nav"
 import HomePage from "./pages/HomePage"
 import ProjectPage from "./pages/ProjectPage"
 import LoginPage from "./pages/LoginPage"
+import PledgePage from "./pages/PledgePage"
 import "./App.css"
 
 
@@ -16,6 +17,7 @@ function App() {
           <Route path="/project/:id" element={<ProjectPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/" element={<HomePage />} />
+          <Route path="/project/:id/pledge" element={<PledgePage />} />
           </Routes>
       </Router>
     </div>
