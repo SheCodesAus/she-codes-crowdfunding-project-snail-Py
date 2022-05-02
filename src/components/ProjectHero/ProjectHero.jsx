@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./ProjectHero.css";
 import { useParams } from "react-router-dom";
+import ProjectOwner from "../ProjectOwner/ProjectOwner";
+
 
 function Hero() {
 
@@ -16,6 +18,9 @@ function Hero() {
          setProjectData(data);
          });
     }, []);
+
+
+
     
     return (
         <section>
@@ -25,8 +30,9 @@ function Hero() {
                 <img className="hero--image" src={projectData.image} />
                 </div>
                 <div className="hero--sidebar">
-                <p>Created at: {projectData.date_created}</p>
-                <p>By: {projectData.owner}</p>
+                    <p>Created on {new Date(projectData.date_created).toLocaleString('en-AU',{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                    
+                <p>By: <ProjectOwner owner={projectData.owner} /></p>
                 <p>{`Status: ${projectData.is_open}`}</p>
                 <button>BREAK YOUR JAR</button>
                 </div>
