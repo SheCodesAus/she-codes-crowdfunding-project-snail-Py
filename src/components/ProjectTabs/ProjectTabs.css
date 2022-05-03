@@ -9,7 +9,7 @@
   .tab--links {
     background-color: inherit;
     float: left;
-    border: black;
+    border: 1px solid black;
     outline: none;
     cursor: pointer;
     padding: 14px 16px;

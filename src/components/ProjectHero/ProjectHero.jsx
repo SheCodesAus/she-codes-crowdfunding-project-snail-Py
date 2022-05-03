@@ -38,7 +38,7 @@ function Hero() {
                     return (
                         <li>
                             ${pledgeData.amount} from {pledgeData.supporter}
-                            {/* ${pledgeData.amount} from <PledgeSupporter supporter={projectData.supporter} /> */}
+                            ${pledgeData.amount} from <PledgeSupporter supporter={projectData.supporter} />
                         </li>
                     )
                     })}

@@ -6,6 +6,7 @@ import ProjectTabs from "../components/ProjectTabs/ProjectTabs";
 
 function ProjectPage() {
 
+    
    
     return (
         <section>
