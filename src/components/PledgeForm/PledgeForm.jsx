@@ -23,11 +23,11 @@ function PledgeForm({ projectId }) {
       console.log("I clicked")
     event.preventDefault();
     try {
-      const res = await fetch(`${process.env.REACT_APP_API_URL}pledges`, {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}pledges/`, {
         method: "post",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Token ${token}`,
         },
         body: JSON.stringify({
           project_id: projectId,
@@ -80,8 +80,8 @@ function PledgeForm({ projectId }) {
       </div>
       <button type="submit" onClick={handleSubmit}>
         Submit Pledge
-      </button>
-    </form>
+          </button>
+      </form>
   );
 }
 
