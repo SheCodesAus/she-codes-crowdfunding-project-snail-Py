@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-function PledgeSupporter({supporter}) {
+function PledgeSupporter({ supporter }) {
+    
     // State
     const [supporterData, setSupporterData] = useState();
     

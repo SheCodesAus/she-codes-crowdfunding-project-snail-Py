@@ -1,83 +1,88 @@
-// import React, { useState } from "react";
-// import { useNavigate } from "react-router-dom";
-// import { useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-// function PledgeForm() {
+function PledgeForm({ projectId }) {
+  // State
+  const token = window.localStorage.getItem("token");
+  const [pledge, setPledge] = useState({
+    amount: "",
+    comment: "",
+    anonymous: "",
+  });
 
-//     // STATE
+  // Actions and Helpers
+  const handleChange = (event) => {
+    const { id, value } = event.target;
+    setPledge((prevPledge) => ({
+      ...prevPledge,
+      [id]: value,
+    }));
+  };
 
-//     const [pledge, setPledge] = useState({
-//         amount: "",
-//         comment:"",
-//     });
-    
-//     // HOOKS - Create a redirect aftern logging into the site
+    const handleSubmit = async (event) => {
+      console.log("I clicked")
+    event.preventDefault();
+    try {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}pledges`, {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          project_id: projectId,
+          amount: pledge.amount,
+          anonymous: pledge.anonymous,
+          supporter: window.localStorage.getItem("username"),
+          comment: pledge.comment,
+        }),
+      });
+      const data = await res.json();
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
-//     const navigate = useNavigate();
-     
-//     // ACTIONS AND HELPERS
+  if (!token) {
+    return (
+      <Link to="/login">Please login to pledge to this amazing project</Link>
+    );
+  }
 
-//     const handleChange = (event) => {
-//         const { id, value } = event.target;
-//         setPledge((prevPledge) => ({
-//         ...prevPledge,
-//         [id]: value,
-//         }));
-//     };    
+  return (
+    <form>
+      <div>
+        <label htmlFor="amount">Amount:</label>
+        <input
+          type="number"
+          id="amount"
+          placeholder="Enter pledge amount"
+          onChange={handleChange}
+        />
+      </div>
+      <div>
+        <label htmlFor="comment">Comment:</label>
+        <input
+          type="text"
+          id="comment"
+          placeholder="Enter comment here"
+          onChange={handleChange}
+        />
+      </div>
+      <div>
+        <label htmlFor="anonymous">Anonymous:</label>
+        <select id="anonymous" onChange={handleChange}>
+          <option value="">--Please choose an option--</option>
+          <option value={true}>True</option>
+          <option value={false}>False</option>
+        </select>
+      </div>
+      <button type="submit" onClick={handleSubmit}>
+        Submit Pledge
+      </button>
+    </form>
+  );
+}
 
-//     const handleSubmit = async (event) => {
-//         event.preventDefault();
-//         // if (credentials.username && credentials.password) {
-//           try {
-//             const response = await fetch(
-//               `${process.env.REACT_APP_API_URL}pledges/${id}`,
-//               {
-//                 method: "post",
-//                 headers: {
-//                   "Content-Type": "application/json",
-//                 },
-//                 body: JSON.stringify(pledge),
-//               }
-//             );
-//               const data = await response.json();
-//               window.localStorage.setItem("token", data.token);
-//               navigate("/login");
-
-//           } catch (err) {
-//             console.log(err);
-//           }
-//         }
-//     };
-
-// return (
-//     <form>
-//         <div>
-//             <label htmlFor="amount">Enter a donation amount:</label>
-//             <input
-//                 type="text"
-//                 id="amount"
-//                 placeholder="Enter how many points you would like to donate"
-//                 onChange={handleChange}
-//             />
-                
-//         </div>
-//         <div>
-//             <label htmlFor="comment">Leave a comment: </label>
-//             <input
-//                 type="text"
-//                 id="comment"
-//                 placeholder="Say a little something"
-//                 onChange={handleChange}
-//             />
-                
-//         </div>
-//         <button type="submit" onClick={handleSubmit}>
-//             Break your jar
-//         </button>
-//     </form>
-// )
-// }
-
-
-// export default PledgeForm;
-          
+export default PledgeForm;

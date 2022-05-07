@@ -1,47 +1,31 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import "./ProjectTabs.css";
-import { useParams } from "react-router-dom";
-import ProjectOwner from "../ProjectOwner/ProjectOwner";
-import ProjectHero from "../ProjectHero/ProjectHero";
-// import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+// import * as React from 'react';
+// import Box from '@mui/material/Box';
+// import Tab from '@mui/material/Tab';
+// import TabContext from '@mui/lab/TabContext';
+// import TabList from '@mui/lab/TabList';
+// import TabPanel from '@mui/lab/TabPanel';
 
+// export default function ProjectTabs() {
+//   const [value, setValue] = React.useState('1');
 
-function ProjectTabs() {
+//   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+//     setValue(newValue);
+//   };
 
-    const [projectData, setProjectData] = useState({ pledges: [] });
-    const { id } = useParams();
-    useEffect(() => {
-        fetch(`${process.env.REACT_APP_API_URL}projects/${id}`)
-            .then((results) => {
-                return results.json();
-            })
-            .then((data) => {
-                setProjectData(data);
-            });
-    }, []);
-
-
-    return (
-        //         <Tabs>
-        //     <TabList>
-        //       <Tab>Title 1</Tab>
-        //       <Tab>Title 2</Tab>
-        //     </TabList>
-
-        //     <TabPanel>
-        //       <h2>Any content 1</h2>
-        //     </TabPanel>
-        //     <TabPanel>
-        //       <h2>Any content 2</h2>
-        //     </TabPanel>
-        //   </Tabs>
-        // );
-        
-        // }
-
-        <p>Tabbed content</p>
-    );
-}
-
-export default ProjectTabs;
+//   return (
+//     <Box sx={{ width: '100%', typography: 'body1' }}>
+//       <TabContext value={value}>
+//         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+//           <TabList onChange={handleChange} aria-label="lab API tabs example">
+//             <Tab label="Item One" value="1" />
+//             <Tab label="Item Two" value="2" />
+//             <Tab label="Item Three" value="3" />
+//           </TabList>
+//         </Box>
+//         <TabPanel value="1">Item One</TabPanel>
+//         <TabPanel value="2">Item Two</TabPanel>
+//         <TabPanel value="3">Item Three</TabPanel>
+//       </TabContext>
+//     </Box>
+//   );
+// }

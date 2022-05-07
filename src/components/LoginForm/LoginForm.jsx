@@ -38,9 +38,11 @@ function LoginForm() {
                 body: JSON.stringify(credentials),
               }
             );
-              const data = await response.json();
-              window.localStorage.setItem("token", data.token);
-              navigate("/");
+            const data = await response.json();
+            console.log("data", data);
+            window.localStorage.setItem("token", data.token);
+            window.localStorage.setItem("username", credentials.username);
+            navigate("/");
 
           } catch (err) {
             console.log(err);
