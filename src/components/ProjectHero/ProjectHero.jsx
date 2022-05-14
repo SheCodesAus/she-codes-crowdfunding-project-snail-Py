@@ -22,6 +22,7 @@ function Hero() {
          });
     }, []);
     
+   
     return (
         <section>
             <h1 className="hero--title">{projectData.title}</h1>
@@ -33,7 +34,7 @@ function Hero() {
                 <div className="hero--sidebar">
                     <p>Project created on {new Date(projectData.date_created).toLocaleString('en-AU',{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })} by <ProjectOwner owner={projectData.owner} />.</p>
                     <p>{`Status: ${projectData.is_open}`}</p>
-                    <p>Goal: ${projectData.goal}</p>
+                    <p>${projectData.pledges.amount} raised of ${projectData.goal} goal!</p>                        
 
                 <p> {projectData.pledges.length} people have just made a donation :</p>
                 <ul>
@@ -53,3 +54,4 @@ function Hero() {
 }
 
 export default Hero
+

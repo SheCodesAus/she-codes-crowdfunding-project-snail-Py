@@ -6,6 +6,7 @@ import ProjectPage from "./pages/ProjectPage"
 import LoginPage from "./pages/LoginPage"
 import PledgePage from "./pages/PledgePage"
 import "./App.css"
+import EditProject from "./pages/EditProject"
 
 
 function App() {
@@ -18,6 +19,9 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/project/:id/pledge" element={<PledgePage />} />
+          <Route path="/project/:id/edit" element={<EditProject />} />
+
+
           </Routes>
       </Router>
     </div>
