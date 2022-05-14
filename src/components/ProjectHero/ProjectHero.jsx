@@ -40,8 +40,7 @@ function Hero() {
                     {projectData.pledges.map((pledgeData, key) => {
                     return (
                         <li key={`${key}-${pledgeData.id}`}>
-                            {/* ${pledgeData.amount} from {pledgeData.supporter} */}
-                            ${pledgeData.amount} from <PledgeSupporter supporter={pledgeData.supporter} />
+                            <span className="supporter--amount">${pledgeData.amount}</span> from <span className="supporter--name"><PledgeSupporter supporter={pledgeData.supporter}/></span>, <span className="supporter--comment">"{pledgeData.comment}"</span>
                         </li>
                     )
                     })}

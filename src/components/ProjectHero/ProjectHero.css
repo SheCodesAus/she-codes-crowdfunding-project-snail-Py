@@ -53,3 +53,16 @@ section {
     padding: 10px;
     color:white;
 }
+
+.supporter--amount{
+    color: #CA7A1B;
+    font-weight: bold;
+}
+
+.supporter--name{
+    font-weight: bold;
+}
+
+.supporter--comment {
+    font-style: italic;
+}

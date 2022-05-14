@@ -1,3 +1,43 @@
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import "./ProjectTabs.css";
+import { useParams } from "react-router-dom";
+import ProjectOwner from "../ProjectOwner/ProjectOwner";
+
+
+function ProjectTabs() {
+
+    const [projectData, setProjectData] = useState({ pledges: [] });
+    const { id } = useParams();
+    useEffect(() => {
+        fetch(`${process.env.REACT_APP_API_URL}projects/${id}`)
+            .then((results) => {
+                return results.json();
+            })
+            .then((data) => {
+                console.log("Data", data)
+                setProjectData(data);
+            });
+    }, []);
+
+    return (
+        <div>
+            <p>{projectData.description}</p>
+        </div>
+
+        
+    )
+}
+
+export default ProjectTabs
+
+
+
+
+
+
+
+
 // import * as React from 'react';
 // import Box from '@mui/material/Box';
 // import Tab from '@mui/material/Tab';
@@ -8,8 +48,8 @@
 // export default function ProjectTabs() {
 //   const [value, setValue] = React.useState('1');
 
-//   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-//     setValue(newValue);
+// //   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+// //     setValue(newValue);
 //   };
 
 //   return (

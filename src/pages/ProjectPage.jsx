@@ -11,7 +11,7 @@ function ProjectPage() {
     return (
         <section>
         <ProjectHero />
-        {/* <ProjectTabs /> */}
+        <ProjectTabs />
         </section>
        
     )
