@@ -1,0 +1,32 @@
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #FFF3C1;
+    box-shadow: 0px 2.98256px 7.4564px rgba(0, 0, 0, 0.1);
+}
+
+.header--logo {
+    height: 100px;
+}
+
+.header--title {
+    font-size:40px;
+    color: black;
+    font-family: 'Anton', sans-serif;
+    letter-spacing: -0.07em;
+}
+
+.header--nav {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+    border: solid;
+    border-color: black;
+    background-color: #CA7A1B;
+    padding: 8px;
+    margin: 2px;
+    border-radius: 8%;
+     
+}
