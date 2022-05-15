@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./LoginForm.css";
 
 function LoginForm() {
 
@@ -51,9 +52,11 @@ function LoginForm() {
       };
 
   return (
+    <div className="form--section">
+      <h1>Login to Point Jar</h1>
     <form>
-        <div>
-        <label htmlFor="username">Username:</label>
+        <div className="form--input">
+        <label htmlFor="username">Username: </label>
         <input
             type="text"
             id="username"
@@ -62,8 +65,8 @@ function LoginForm() {
         />
         
         </div>
-        <div>
-        <label htmlFor="password">Password:</label>
+        <div className="form--input">
+        <label htmlFor="password">Password: </label>
         <input
             type="password"
             id="password"
@@ -74,7 +77,8 @@ function LoginForm() {
         <button type="submit" onClick={handleSubmit}>
         Login
         </button>
-    </form>
+      </form>
+      </div>
     );
 }
 

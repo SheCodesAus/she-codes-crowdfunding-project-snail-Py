@@ -43,7 +43,7 @@ function ProjectTabs() {
             <p>{projectData.project_faq.answer_text}</p> */}
             <h2>Latest updates</h2>
 
-            <Link to={`/project/${projectData.id}/edit/`}>Edit this project</Link>
+            <Link to={`/projects/${projectData.id}/`}>Edit this project</Link>
 
         </div>
 
