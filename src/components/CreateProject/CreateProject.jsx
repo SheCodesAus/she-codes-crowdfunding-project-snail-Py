@@ -1,25 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import "./ProjectForm.css";
 
-function ProjectForm() {
+function CreateProject() {
 
-    const [project, setProject] = useState();
-    const { id } = useParams();
-
-    useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}projects/${id}`)
-    .then((results) => {
-    return results.json();
-    })
-    .then((data) => {
-        setProject(data);
+   // STATES
+    
+  const token = window.localStorage.getItem("token");
+  
+//   const navigate = useNavigate();
+  const [project, setProject] = useState({
+      title: "",
+      tagline: "",
     });
-    }, [id]);
 
-     // STATES
-
-     const token = window.localStorage.getItem("token");
 
     // ACTIONS AND HELPERS OK
         
@@ -34,17 +27,15 @@ function ProjectForm() {
     const handleSubmit = async (event) => {
       event.preventDefault();
       try {
-        const res = await fetch(`${process.env.REACT_APP_API_URL}projects/${id}/`, {
-          method: "put",
+        const res = await fetch(`${process.env.REACT_APP_API_URL}projects/`, {
+          method: "post",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Token ${token}`,
           },
           body: JSON.stringify({
-            // project_id: projectId,
             title: project.title,
             tagline: project.tagline,
-            // supporter: window.localStorage.getItem("username"),
           }),
         });
         const data = await res.json();
@@ -54,15 +45,16 @@ function ProjectForm() {
       }
     };
 
-    if (!token) {
+    if (!token || token===null || token===undefined || token==="undefined") {
         return (
-          <Link to="/login">Please login to edit this project.</Link>
+          <Link to="/login">Please login to create a project</Link>
         );
-      }
+    }
+    
 
     return (
         <div>
-        <h1>Edit this project</h1>
+        <h1>Create a new project</h1>
             <form>
                 <div>
                 <label htmlFor="title">Name:</label>
@@ -86,7 +78,7 @@ function ProjectForm() {
 
                 <button type="submit"
                     onClick={handleSubmit}>
-            Update project
+            Let the world know about it!
                 </button>
             </form>
         </div>
@@ -94,5 +86,5 @@ function ProjectForm() {
     )
 }
 
-export default ProjectForm;
+export default CreateProject;
 

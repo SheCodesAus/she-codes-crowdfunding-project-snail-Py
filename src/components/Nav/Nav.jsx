@@ -10,7 +10,7 @@ function Nav() {
             <h2 className="header--title">POINT JAR</h2>
             <nav>
                 <Link className="header--nav" to="/">Home</Link>
-                <Link className="header--nav" to="/project/:id">Projects</Link>
+                <Link className="header--nav" to="/projects/">Create a project</Link>
                 <Link className="header--nav" to="/login">Login</Link>
             </nav>
         </header>
