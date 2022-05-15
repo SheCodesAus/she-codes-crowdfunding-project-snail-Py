@@ -1,18 +1,33 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 import "./ProjectForm.css";
 
-function ProjectForm({ projectId }) {
+function ProjectForm() {
 
-    // STATE
+    // STATES
 
-    // const token = window.localStorage.getItem("token");
-    const [project, setProject] = useState({
-        title: "",
-        tagline: "",
-    }),
+    const token = window.localStorage.getItem("token");
 
-    // ACTIONS AND HELPERS
+
+    // const [project, setProject] = useState({
+    //     title: "",
+    //     tagline: "",
+    // }),
+
+    const [project, setProject] = useState();
+    const { id } = useParams();
+
+    useEffect(() => {
+    fetch(`${process.env.REACT_APP_API_URL}projects/${id}`)
+    .then((results) => {
+    return results.json();
+    })
+    .then((data) => {
+        setProject(data);
+    });
+    }, [id]);
+
+    // ACTIONS AND HELPERS OK
         
     const handleChange = (event) => {
         const { id, value } = event.target;
@@ -29,7 +44,7 @@ function ProjectForm({ projectId }) {
           method: "put",
           headers: {
             "Content-Type": "application/json",
-            // Authorization: `Token ${token}`,
+            Authorization: `Token ${token}`,
           },
           body: JSON.stringify({
             // project_id: projectId,
@@ -45,6 +60,11 @@ function ProjectForm({ projectId }) {
       }
     };
 
+    if (!token) {
+        return (
+          <Link to="/login">Please login to edit this project.</Link>
+        );
+      }
 
     return (
         <div>
@@ -72,7 +92,7 @@ function ProjectForm({ projectId }) {
 
                 <button type="submit"
                     onClick={handleSubmit}>
-            Submit Pledge
+            Update project
                 </button>
             </form>
         </div>
