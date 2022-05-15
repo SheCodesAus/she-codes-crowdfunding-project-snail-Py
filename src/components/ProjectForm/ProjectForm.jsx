@@ -4,16 +4,6 @@ import "./ProjectForm.css";
 
 function ProjectForm() {
 
-    // STATES
-
-    const token = window.localStorage.getItem("token");
-
-
-    // const [project, setProject] = useState({
-    //     title: "",
-    //     tagline: "",
-    // }),
-
     const [project, setProject] = useState();
     const { id } = useParams();
 
@@ -26,6 +16,10 @@ function ProjectForm() {
         setProject(data);
     });
     }, [id]);
+
+     // STATES
+
+     const token = window.localStorage.getItem("token");
 
     // ACTIONS AND HELPERS OK
         
