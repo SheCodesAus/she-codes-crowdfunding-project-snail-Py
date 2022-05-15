@@ -9,6 +9,8 @@ function ProjectCard(props) {
       <Link to={`/project/${projectData.id}`}>
         <img src={projectData.image} />
         <h3>{projectData.title}</h3>
+        <Link className="project-card--link" to={`/project/${projectData.id}`}>Break my Point Jar</Link>
+
       </Link>
     </div>
   );
